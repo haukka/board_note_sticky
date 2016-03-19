@@ -2,6 +2,8 @@ var express = require('express');
 var path = require('path');
 var app = express();
 
+app.io = require('socket.io')();
+
 var Note = [];
 
 app.set('views', path.join(__dirname, 'views'));
@@ -13,10 +15,8 @@ app.get('/', function(req, res) {
     res.render('index');
 });
 
-server = require('http').createServer(app),
-io = require('socket.io').listen(server);
+app.io.on('connection', function(socket) {
 
-io.sockets.on('connection', function(socket) {
     socket.emit('getData', {data: Note});
 
     socket.on('NoteCreation', function(data) {
@@ -44,4 +44,4 @@ io.sockets.on('connection', function(socket) {
     });
 });
 
-server.listen(3000);
+module.exports = app;

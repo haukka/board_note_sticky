@@ -24,12 +24,13 @@ function NoteDrag(socket) {
     var controller = function($scope) {
 	socket.on('UpdateNote', function(data) {
 	    if(data.id == $scope.note.id) {
+		console.log($scope.note);
 		$scope.note.title = data.title;
 		$scope.note.message = data.message;
 	    }
 	});
 
-	$scope.updateNote = function(note) {
+	$scope.updateElem = function(note) {
 	    socket.emit('NoteUpdate', note);
 	};
 

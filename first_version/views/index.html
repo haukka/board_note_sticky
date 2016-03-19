@@ -4,10 +4,10 @@
     <title>Note board</title>	
     <link rel="stylesheet" href="/css/app.css">
     <link href="http://fonts.googleapis.com/css?family=Shadows+Into+Light|Gloria+Hallelujah|Architects+Daughter|Annie+Use+Your+Telescope|Coming+Soon|Amatic+SC:700" rel="stylesheet" type="text/css">
-    <script src="https://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/ui/1.12.0-rc.1/jquery-ui.min.js" integrity="sha256-mFypf4R+nyQVTrc8dBd0DKddGB5AedThU73sLmLWdc0=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0-rc.1/jquery-ui.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <script src="/js/app.js"></script>
     <script src="/js/factory.js"></script>
@@ -23,7 +23,7 @@
 	<ul class="nav navbar-nav">
 	  <li>
 	    <p class="navbar-btn">
-	      <a href="#" id="createButton" ng-click="create()" class="btn btn-success">Create Note</a>
+	      <button id="createButton" ng-click="create()" class="btn btn-success">Create Note</button>
 	      </p>
 	  </li>
 	</ul>
@@ -32,8 +32,8 @@
     <div class="container" style="height: 100%; width: 100%;">
       <div note-drag ng-repeat="note in notes" note="note" class="alert alert-block note" onremove="remove(id)" style="left: {{note.x}}px; top: {{note.y}}px;">
 	<button type="button" class="close" ng-click="remove(note.id)">x</button>
-	<input ng-model="note.title" ng-change="updateNote(note)" type="text" class="title" >
-	<textarea ng-model="note.message" ng-change="updateNote(note)" class="message">{{note.message}}</textarea>
+	<input ng-model="note.title" ng-change="updateElem(note)" type="text" class="title" >
+	<textarea ng-model="note.message" ng-change="updateElem(note)" class="message">{{note.message}}</textarea>
       </div>
     </div>
   </body>
